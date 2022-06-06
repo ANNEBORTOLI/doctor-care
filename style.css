@@ -1,7 +1,7 @@
-/* ===== GERAL ===== */
+/* ========================= GENERAL ========================= */
 * {
   margin: 0;
-  /* padding: 0; */
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -14,6 +14,14 @@
   --brand-light: hsl(148, 23%, 89%);
 
   font-size: 62.5%; /* 1rem = 10px */
+
+  --nav-height: 7.2rem;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -21,22 +29,45 @@ body {
   font-size: 1.6rem; /* padrão do navegador */
 
   text-align: center;
+
+  overflow: overlay;
+}
+
+ul {
+  list-style: none;
+}
+/* ========================= HEADER ========================= */
+
+header::before {
+  content: '';
+  width: 100%;
+  height: calc(108rem + var(--nav-height));
+  background-color: var(--brand-light);
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.wrapper {
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
 }
 
 header {
-  width: 37.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4.1rem;
+  margin-top: calc(4.1rem + var(--nav-height));
 }
 
-h4 {
+header h4 {
   font-size: 1.4rem;
   color: var(--primary-color);
   margin-bottom: 1.6rem;
 }
 
-h1 {
+header h1 {
   font-size: 3.4rem;
   color: var(--headline);
   line-height: 130%;
@@ -44,7 +75,7 @@ h1 {
   margin-bottom: 2.4rem;
 }
 
-p {
+header p {
   font-size: 1.8rem;
   line-height: 150%;
   color: var(--paragraph);
@@ -52,7 +83,7 @@ p {
   margin-bottom: 3.2rem;
 }
 
-button {
+header button {
   background-color: var(--primary-color);
 
   border: none;
@@ -75,6 +106,13 @@ button {
 
   margin-left: auto;
   margin-right: auto;
+}
+
+header img {
+  width: 26.4rem; /* para que a img se adapte ao tam da tela */
+  display: block;
+  margin-inline: auto;
+  /* objecti-position: 0 2rem */
 }
 
 .stats {
@@ -105,24 +143,134 @@ button {
   line-height: 150%;
 }
 
-header img {
-  width: 26.4rem; /* para que a img se adapte ao tam da tela */
-  display: block;
-  margin-inline: auto;
-  /* objecti-position: 0 2rem */
+/* ========================= NAV ========================= */
+nav {
+  display: flex;
+
+  height: var(--nav-height);
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Criando uma tag html pelo CSS (pseudo-class, pseudo-element etc) antes do conteúdo do header */
-/* Adicionando um background-color que vai to topo da página até metade da div stats*/
-header::before {
-  content: '';
-  width: 100vw;
-  height: 108rem;
-  background-color: var(--brand-light);
-  display: block;
+nav .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  position: absolute;
+nav.scroll {
+  background-color: var(--primary-color);
+  width: 100vw;
+}
+
+nav.scroll svg:nth-child(1) path {
+  fill: white;
+}
+
+nav.scroll button path {
+  stroke: white;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================= MENU EXPENDED ========================= */
+body.menu-expended {
+  overflow: hidden;
+}
+/* Some com todos os elementos de 1º nível, menos o nav */
+body.menu-expended > :not(nav) {
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expended .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expended .menu,
+body.menu-expended .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expended .menu {
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  background: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+}
+
+body.menu-expended nav {
+  position: relative;
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu .button {
+  background: white;
+  border-radius: 4rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--primary-color);
+
+  display: inline-block;
+
+  padding: 1.6rem 3.2rem;
+
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+body.menu-expended .logo,
+body.menu-expended button {
+  position: relative;
+  z-index: 100;
+}
+
+body.menu-expended .logo path {
+  fill: white;
+}
+
+body.menu-expended button path {
+  stroke: white;
 }
