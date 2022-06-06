@@ -12,3 +12,19 @@ const openMenu = () => {
 const closeMenu = () => {
   document.body.classList.remove('menu-expended');
 };
+
+// Lib Scroll Reveal
+ScrollReveal({
+  origin: 'top',
+  distance: '30px',
+  duration: 700
+}).reveal(`
+#home, 
+#home img, 
+#home .stats,
+#services,
+#services header,
+#services.card
+#about,
+#about header,
+#about .content`);
