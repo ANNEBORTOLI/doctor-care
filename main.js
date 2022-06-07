@@ -1,11 +1,38 @@
 /* Outra opção, nesse caso pode tirar da tag body o  onscroll="onScroll()" */
-//window.addEventListener('scroll', onScroll);
+// window.addEventListener('scroll', onScroll);
 /* é preciso executar uma única vez */
-//onScroll();
+// onScroll();
 
 const onScroll = () => {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
+
+  activateMenuAtCurrentSection(home);
+  activateMenuAtCurrentSection(services);
+  activateMenuAtCurrentSection(about);
+  activateMenuAtCurrentSection(contact);
+};
+
+const activateMenuAtCurrentSection = section => {
+  const targetLine = scrollY + innerHeight / 2;
+
+  const sectionTop = section.offsetTop;
+  const sectionHeight = section.offsetHeight;
+  const sectionTopReachedOrPassedTargetLine = targetLine >= sectionTop;
+
+  const sectionEndsAt = sectionTop + sectionHeight;
+  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine;
+
+  const sectionBoundaries =
+    sectionTopReachedOrPassedTargetLine && !sectionEndPassedTargetLine;
+
+  const sectionId = section.getAttribute('id');
+  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`);
+
+  menuElement.classList.remove('active');
+  if (sectionBoundaries) {
+    menuElement.classList.add('active');
+  }
 };
 
 const showNavOnScroll = () => {
