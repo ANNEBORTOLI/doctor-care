@@ -12,6 +12,7 @@
 
   --brand-beige: hsl(39, 100%, 97%);
   --brand-light: hsl(148, 23%, 89%);
+  --brand-dark: hsla(170, 100%, 14%);
 
   --bg-light: hsla(180, 14%, 97%);
 
@@ -92,6 +93,42 @@ section .content p {
   line-height: 150%;
 
   color: var(--paragraph);
+}
+
+.button {
+  background-color: var(--primary-color);
+
+  border: none;
+  border-radius: 4rem;
+
+  margin-bottom: 6rem;
+
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: var(--brand-dark);
+  transition: background 200ms;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
 }
 
 /* ========================= NAVIGATION ========================= */
@@ -208,11 +245,11 @@ body.menu-expended .menu {
   margin-bottom: 8rem;
 }
 
-.social-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3.2rem;
+.menu .button:hover {
+  background-color: var(--primary-color);
+  color: white;
+
+  filter: brightness(1.2);
 }
 
 body.menu-expended .logo,
@@ -247,6 +284,10 @@ body.menu-expended button path {
   z-index: -1;
 }
 
+#home .button {
+  margin-inline: auto;
+}
+
 #home p {
   font-size: 1.8rem;
   line-height: 150%;
@@ -255,36 +296,11 @@ body.menu-expended button path {
   margin-bottom: 3.2rem;
 }
 
-#home button {
-  background-color: var(--primary-color);
-
-  border: none;
-  border-radius: 4rem;
-
-  margin-bottom: 6rem;
-
-  height: 5.2rem;
-  width: 26.3rem;
-
-  color: white;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #home img {
-  width: 26.4rem; /* para que a img se adapte ao tam da tela */
+  width: 26.4rem;
   display: block;
   margin-inline: auto;
-  /* objecti-position: 0 2rem */
+  object-position: 0 2rem;
 }
 
 #home .stats {
@@ -354,4 +370,81 @@ body.menu-expended button path {
 #about .content p {
   margin-top: 2.4rem;
   margin-bottom: 6rem;
+}
+
+/* ========================= CONTACT ========================= */
+
+#contact {
+  text-align: left;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* ========================= FOOTER ========================= */
+
+footer {
+  background-color: var(--primary-color);
+  padding-block: 6rem;
+
+  text-align: left;
+  color: white;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo path {
+  fill: white;
+}
+
+footer p {
+  color: var(--brand-beige);
+  line-height: 2;
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: left;
+}
+
+/*  BACK TO TOP BUTTON  */
+
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 2.5rem;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  transition: 200ms;
+}
+
+#backToTopButton.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
